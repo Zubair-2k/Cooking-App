@@ -1,0 +1,888 @@
+import { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import "./RecipeDetails.css"
+import TrData from "../../Data/trending_cuisine.json"
+
+const RecipeDetails = () => {
+
+    useEffect(() => {
+    
+    const tl = gsap.timeline();
+    
+    tl.fromTo(".recipeHeaderImg", { opacity: 0 }, { opacity: 1, duration: 1.5 })
+    .fromTo(".recipeNameBgImg", {x:-20, opacity: 0 }, {x:0, opacity: 1, duration: 1}, "-=0.2")  
+    .fromTo(".recipeHeadingText", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 1})
+    .fromTo(".recipeDesc", {y:-20, opacity: 0 }, { y:0, opacity: 1, duration: 1,stagger:0.4 }, "-=0.5")  
+    .fromTo(".recipePrepDetailAnimate", {opacity: 0 }, { opacity: 1, duration: 1,stagger:0.4 }, "-=0.5")  
+    .fromTo(".recipeIngredientHeader", { y:-10, opacity: 0 }, { y:0, opacity: 1, duration: 1.5 },"detail")
+    .fromTo(".recipeIngredientHeadingIcon", {x:-20, opacity: 0 }, {x:0, opacity: 1, duration: 1}, "detailIcon")  
+    .fromTo(".recipecIngredientHeadingText", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 1},"detailHeading")
+    .fromTo(".recipeIngredientHeadingSubText", {y:-20, opacity: 0 }, { y:0, opacity: 1, duration: 1}, "detailSubText")  
+    .fromTo(".recipeIngredient", { x:-10, opacity: 0 }, { x:0, opacity: 1, duration: 1,stagger:0.4 }, "detailValues")  
+    .fromTo(".recipeInstructionsHeader", { y:-10, opacity: 0 }, { y:0, opacity: 1, duration: 1.5 },"detail")
+    .fromTo(".recipeInstructionsIcon", {x:-20, opacity: 0 }, {x:0, opacity: 1, duration: 1}, "detailIcon")  
+    .fromTo(".recipecInstructionsHeadingText", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 1},"detailHeading")
+    .fromTo(".recipeInstructionsHeadingSubText", {y:-20, opacity: 0 }, { y:0, opacity: 1, duration: 1}, "detailSubText")  
+    .fromTo(".recipeInstruction", { x:-10, opacity: 0 }, { x:0, opacity: 1, duration: 1,stagger:0.4 }, "detailValues")  
+    
+
+    return () => {
+      tl.kill();
+    };
+
+  }, []);
+  return (
+    <>
+        <div className="recipeDetailsContainer">
+            <div className="backBtn">
+                <i className="fa-solid fa-arrow-left"></i>
+            </div>
+
+            <div className="recipeDetailContainer">
+                <div className="recipeHeader">
+                    <div className="recipeHeaderImg">
+                        <img src={`./dishImg/TrendingImg/${TrData[0]["image_url"]}`} alt={TrData[0]["name"]} className="recipeImgValue"/>
+                    </div>
+
+                    <div className="recipeHeadingContent">
+                        <div className="recipeNameBgImg">
+                            <img src="brushBgImg.png" alt="Brush Img" className="brushImg" />
+                        </div>
+
+                        <div className="recipeHeadingText">{TrData[0]["name"]}</div>
+
+                        <div className="recipeDescription">
+                            {TrData[0].description.split(".").filter((sentence) => sentence.trim() !== "").map((data,index)=>{
+                                return(
+                                // console.log(data);
+                                <div className="recipeDesc" key={index}>
+                                    <div className="recipeDescIcon">
+                                        <img src="DescIcon2.png" alt="Description Icon" className="DescIcon"/>
+                                    </div>
+                                    <div className="recipeDescText">
+                                        {data}                                    
+                                    </div>
+                                </div>
+                            )
+                            })}
+                        </div>
+                        
+                        <div className="recipePrepDetails">
+                            <div className="prepTime recipePrepDetailAnimate">
+                                <div className="prepTimeIcon">
+                                    <span className="material-symbols-outlined">timer</span>
+                                </div>
+                                <div className="prepTimeContent">
+                                    <div className="prepTimeText">
+                                        Prep Time
+                                    </div>
+                                    <div className="prepTimeValue">
+                                        {TrData[0].prep_time.slice(9)}ins
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="courses recipePrepDetailAnimate">
+                                <div className="coursesIcon">
+                                    <i className="fa-solid fa-utensils"></i>
+                                </div>
+                                <div className="coursesContent">
+                                    <div className="coursesText">
+                                        Courses
+                                    </div>
+                                    <div className="coursesValue">
+                                        {TrData[0].course}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="diet recipePrepDetailAnimate">
+                                <div className="dietIcon">
+                                    <i className="fa-solid fa-bowl-food"></i>
+                                </div>
+                                <div className="dietContent">
+                                    <div className="dietText">
+                                        Diet
+                                    </div>
+                                    <div className="dietValue">
+                                        {TrData[0].diet}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="cuisine recipePrepDetailAnimate">
+                                <div className="cuisineIcon">
+                                    <i className="fa-solid fa-earth-asia"></i>
+                                </div>
+                                <div className="cuisineContent">
+                                    <div className="cuisineText">
+                                        Cuisine
+                                    </div>
+                                    <div className="cuisineValue">
+                                        {TrData[0].cuisine}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="recipeDetails">
+                    <div className="recipeIngInsContainer">
+                        <div className="recipeIngredientContainer">
+                            <div className="recipeIngredientHeader">
+                                    <div className="recipeIngredientHeading">
+                                        <div className="recipeIngredientHeadingIcon">
+                                            <img src="ingredientsIcon.png" alt="Ingredients Icon" className="ingredientsIcon"/>    
+                                        </div>                    
+                                        <div className="recipecIngredientHeadingText">
+                                            Ingredients
+                                        </div>
+                                    </div>
+                                    <div className="recipeIngredientHeadingSubText">
+                                        Everything you'll need
+                                    </div>
+                            </div>
+
+                            <div className="recipeIngredientContent">
+                                {TrData[0].ingredients.replace(/\t+/g, "").replace(/\n+/g, "\n").split("\n").map((line) => line.trim()).filter((line) => line !== "").map((data,index)=>{
+                                    return (
+                                    <div className="recipeIngredient" key={index}>
+                                        <div className="recipeIngredientIcon">
+                                            <img src="IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                        </div>
+                                        <div className="recipeIngredientValue">{data}</div>
+                                    </div>
+                                    )
+
+                                })}
+                                    {/* <div className="recipeIngredient">
+                                        <div className="recipeIngredientIcon">
+                                            <img src="IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                        </div>
+                                        <div className="recipeIngredientValue">400g Rice Noodles</div>
+                                    </div>
+
+                                <div className="recipeIngredient">
+                                    <div className="recipeIngredientIcon">
+                                        <img src="IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                    </div>
+                                    <div className="recipeIngredientValue">4 Cloves Garlic, Minced</div>
+                                </div>
+
+                                <div className="recipeIngredient">
+                                    <div className="recipeIngredientIcon">
+                                        <img src="IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                    </div>
+                                    <div className="recipeIngredientValue">2 Tbsp Soy Sauce</div>
+                                </div>
+
+                                <div className="recipeIngredient">
+                                    <div className="recipeIngredientIcon">
+                                        <img src="IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                    </div>
+                                    <div className="recipeIngredientValue">1 Tbsp Chilli Oil</div>
+                                </div>
+
+                                <div className="recipeIngredient">
+                                    <div className="recipeIngredientIcon">
+                                        <img src="IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                    </div>
+                                    <div className="recipeIngredientValue">2 Tbsp Vegetable Oil</div>
+                                </div>
+
+                                <div className="recipeIngredient">
+                                    <div className="recipeIngredientIcon">
+                                        <img src="IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                    </div>
+                                    <div className="recipeIngredientValue">1 Tsp Sesame Oil</div>
+                                </div>
+
+                                <div className="recipeIngredient">
+                                    <div className="recipeIngredientIcon">
+                                        <img src="IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                    </div>
+                                    <div className="recipeIngredientValue">2 Green Onions, Sliced</div>
+                                </div>
+
+                                <div className="recipeIngredient">
+                                    <div className="recipeIngredientIcon">
+                                        <img src="IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                    </div>
+                                    <div className="recipeIngredientValue">1 Tsp Red Pepper Flakes</div>
+                                </div>
+
+                                <div className="recipeIngredient">
+                                    <div className="recipeIngredientIcon">
+                                        <img src="IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                    </div>
+                                    <div className="recipeIngredientValue">Salt to Taste</div>
+                                </div>
+
+                                <div className="recipeIngredient">
+                                    <div className="recipeIngredientIcon">
+                                        <img src="IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                    </div>
+                                    <div className="recipeIngredientValue">Sesame Seeds for Garnish</div>
+                                </div> */}
+
+                            </div>
+                        </div>
+
+                        <div className="recipeInstructionsContainer">
+                            <div className="recipeInstructionsHeader">
+                                <div className="recipeInstructionsHeading">
+                                    <div className="recipeInstructionsIcon">
+                                        <img src="instructionIcon.png" alt="Instructions Icon" className="instructionsIcon"/>
+                                    </div>
+
+                                    <div className="recipecInstructionsHeadingText">
+                                        Instructions
+                                    </div>
+                                </div>
+
+                                <div className="recipeInstructionsHeadingSubText">
+                                    Follow these steps for best results
+                                </div>
+                            </div>
+
+                            <div className="recipeInstructionsContent">
+
+                                {TrData[0].instructions.split(".").filter((sentence) => sentence.trim() !== "").map((data,index)=>{
+                                    const stepNumber = index + 1;
+                                    const formattedNumber = stepNumber < 10 ? `0${stepNumber}` : stepNumber;
+                                    return(
+                                        
+                                        <div className="recipeInstruction" key={index}>
+                                            <div className="recipeInstructionNumber">
+                                                {formattedNumber}
+                                            </div>
+
+                                            <div className="recipeInstructionText">
+                                                {data}.
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+{/* 
+                                <div className="recipeInstruction">
+                                    <div className="recipeInstructionNumber">
+                                        02
+                                    </div>
+
+                                    <div className="recipeInstructionText">
+                                        Heat vegetable oil in a large wok or skillet over high heat.
+                                    </div>
+                                </div>
+
+                                <div className="recipeInstruction">
+                                    <div className="recipeInstructionNumber">
+                                        03
+                                    </div>
+
+                                    <div className="recipeInstructionText">
+                                        Add minced garlic and red pepper flakes, stir-fry for 30 seconds until fragrant.
+                                    </div>
+                                </div>
+
+                                <div className="recipeInstruction">
+                                    <div className="recipeInstructionNumber">
+                                        04
+                                    </div>
+
+                                    <div className="recipeInstructionText">
+                                        Add the cooked noodles to the wok and toss well.
+                                    </div>
+                                </div>
+
+                                <div className="recipeInstruction">
+                                    <div className="recipeInstructionNumber">
+                                        05
+                                    </div>
+
+                                    <div className="recipeInstructionText">
+                                        Pour in soy sauce, chili oil, and sesame oil. Mix thoroughly.
+                                    </div>
+                                </div>
+
+                                <div className="recipeInstruction">
+                                    <div className="recipeInstructionNumber">
+                                        06
+                                    </div>
+
+                                    <div className="recipeInstructionText">
+                                       Stir-fry for 2-3 minutes until everything is well combined and heated through.
+                                    </div>
+                                </div>
+
+                                <div className="recipeInstruction">
+                                    <div className="recipeInstructionNumber">
+                                        07
+                                    </div>
+
+                                    <div className="recipeInstructionText">
+                                        Remove from heat, garnish with green onions and sesame seeds.
+                                    </div>
+                                </div>
+
+                                <div className="recipeInstruction">
+                                    <div className="recipeInstructionNumber">
+                                        08
+                                    </div>
+
+                                    <div className="recipeInstructionText">         
+                                        Serve hot and enjoy!
+                                    </div>
+                                </div> */}
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </>
+  )
+}
+
+export default RecipeDetails; in RecipeDetails.jsx,
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.recipeDetailsContainer{
+    position: relative;
+}
+
+.backBtn{
+    padding: 10px;
+    background-color: rgb(237, 238, 237);
+    border-radius: 50%;
+    position: fixed;
+    box-shadow: 0px 0px 10px 1px rgb(57, 56, 56);
+    top: 20px;
+    left: 40px;
+    cursor: pointer;
+    transform: scale(1);
+    transition: transform 0.2s linear;
+}
+
+.backBtn:hover{
+    transform: scale(1.10);
+}
+
+.recipeDetailContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 10px 30px 30px;
+}
+
+.recipeHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+.recipeHeaderImg{
+    width: 800px;
+    height: 600px;
+    border-radius: 10px;
+}
+
+.recipeImgValue{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 30px;
+}
+
+.recipeHeadingContent{
+    position: relative;
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.recipeNameBgImg{
+    width: 750px;
+    /* height: 140px; */
+    position: absolute;
+    top: -80px;
+    left: -70px;
+    z-index: -1;
+}
+
+.brushImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recipeHeadingText{
+    /* background-image: url('brushBgImg.png');
+    background-size: cover;
+    background-size: 900px 200px;
+    background-repeat: no-repeat;
+    background-position: right; */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgb(24, 23, 23);
+}
+
+.recipeDescription{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+    color: rgb(68, 68, 68);
+    padding: 10px 15px;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    list-style-type: square;
+}
+
+.recipeDesc{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.recipeDescIcon{
+    width: 3%;
+}
+
+.recipeDescText{
+    width: 100%;
+}
+
+/* .recipeDesc2{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.recipeDesc2Icon{
+    width: 3%;
+}
+
+.recipeDesc2Text{
+    width: 100%;
+}
+
+.recipeDesc3{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.recipeDesc3Icon{
+    width: 3%;
+}
+
+.recipeDesc3Text{
+    width: 100%;
+} */
+
+.DescIcon{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recipePrepDetails{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.prepTime{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+    /* border: 1px solid black; */
+    padding: 25px;
+    flex-basis: 40%;
+    box-shadow: 0px 0px 10px 1px rgb(57, 56, 56);
+    border-radius: 10px;
+    margin: 10px 0px;
+}
+
+.prepTimeIcon{
+    /* background-color: rgb(255, 136, 0); */
+    background-color: #F54A00;
+    border-radius: 30px;
+    padding: 6px 4px 2px 4px;
+    color: white;
+}
+
+.prepTimeContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 5px;
+}
+
+.prepTimeText{
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: rgb(96, 96, 96);
+}
+
+.prepTimeValue{
+    font-size: 15px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.courses{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+    /* border: 1px solid black; */
+    padding: 25px;
+    flex-basis: 40%;
+    box-shadow: 0px 0px 10px 1px rgb(57, 56, 56);
+    border-radius: 10px;
+}
+
+.coursesIcon{
+    /* background-color: rgb(255, 136, 0); */
+    background-color: #F54A00;
+    border-radius: 30px;
+    padding: 8px;
+    color: white;
+}
+
+.coursesContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 5px;
+}
+
+.coursesText{
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: rgb(96, 96, 96);
+}
+
+.coursesValue{
+    font-size: 15px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+
+.diet{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+    /* border: 1px solid black; */
+    padding: 25px;
+    flex-basis: 40%;
+    box-shadow: 0px 0px 10px 1px rgb(57, 56, 56);
+    border-radius: 10px;
+}
+
+.dietIcon{
+    /* background-color: rgb(255, 136, 0); */
+    background-color: #F54A00;
+    border-radius: 30px;
+    padding: 8px;
+    color: white;
+}
+
+.dietContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 5px;
+}
+
+.dietText{
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: rgb(96, 96, 96);
+}
+
+.dietValue{
+    font-size: 15px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+
+.cuisine{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+    /* border: 1px solid black; */
+    padding: 25px;
+    flex-basis: 40%;
+    box-shadow: 0px 0px 10px 1px rgb(57, 56, 56);
+    border-radius: 10px;
+}
+
+.cuisineIcon{
+    /* background-color: #f6dbb2; */
+    background-color: #F54A00;
+    border-radius: 30px;
+    padding: 8px;
+    color: white;
+    /* color: #F54A00; */
+}
+
+.cuisineContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 5px;
+}
+
+.cuisineText{
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: rgb(96, 96, 96);
+}
+
+.cuisineValue{
+    font-size: 15px;
+    letter-spacing: 2px;
+    /* color: rgb(98, 134, 46); */
+    font-weight: 700;
+}
+
+.recipeDetails{
+    width: 90%;
+}
+
+.recipeIngInsContainer{
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: flex-start;
+    /* gap: 60px; */
+    padding: 30px 0px 10px 0px;
+    margin: 10px 0 0 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.recipeIngredientContainer{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 10px;
+    /* border: 2px solid black; */
+}
+
+.recipeIngredientHeader{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 5px;
+    border-left: 5px solid #F54A00;
+    padding: 20px;
+}
+
+.recipeIngredientHeading{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+}
+
+.recipeIngredientHeadingIcon{
+    width: 20px;
+}
+
+.ingredientsIcon{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recipecIngredientHeadingText{
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    /* opacity: 0; */
+}
+
+.recipeIngredientHeadingSubText{
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: rgb(96, 96, 96);
+}
+
+.recipeIngredientContent{
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    /* align-items: center; */
+}
+
+.recipeIngredient{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 10px 10px 10px 0;
+    gap: 10px;
+}
+
+.recipeIngredientIcon{
+    width: 20px;
+    height: 20px;
+}
+
+.ingredientsListIcon{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recipeIngredientValue{
+    width: 80%;
+    font-size: 15px;
+    font-weight: 100;
+    word-spacing: 1px;
+    /* color: rgb(40, 40, 40); */
+    color: rgb(52, 52, 52);
+    /* letter-spacing: 1px; */
+}
+
+.recipeInstructionsContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+    /* overflow: scroll; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    gap: 10px;
+    /* border: 2px solid black; */
+}
+
+.recipeInstructionsHeader{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    padding: 20px; */
+    border-left: 5px solid #F54A00;
+    gap: 5px;
+    flex: 0 0 auto; /* header takes its natural height */
+    background-color: #fff;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    z-index: 1;
+}
+
+.recipeInstructionsHeading{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+}
+
+.recipeInstructionsIcon{
+    width: 20px;
+}
+
+.instructionsIcon{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recipecInstructionsHeadingText{
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.recipeInstructionsHeadingSubText{
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: rgb(96, 96, 96);
+}
+
+.recipeInstructionsContent{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto; */
+    flex: 1 1 auto; /* fills remaining space */
+    overflow-y: auto; /* scrollable content only */
+    padding: 20px;
+    /* align-items: center; */
+}
+
+.recipeInstruction{
+    /* padding: 30px 30px 30px 10px; */
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 30px 0 30px 0;
+    border-bottom: 2px solid rgb(72, 71, 71);
+}
+
+.recipeInstruction:hover .recipeInstructionNumber{
+    /* color: #f7b585; */
+    /* color: #f2a166; */
+    /* color: #f7cfb3; */
+    color: #f6ccae;
+}
+
+
+.recipeInstructionNumber{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* color: #FFE1CC; */
+    /* color: #f7cfb3; */
+    color: #fbe6d6;
+    font-size: 60px;
+}
+
+.recipeInstructionText{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: rgb(40, 40, 40);
+    width: 90%;
+}
+
+in RecipeDetails.css

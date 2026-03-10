@@ -1,0 +1,138 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.headerContainer{
+    background-image: url("/HeaderFoodImg.png");
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(9, 9, 9, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.headerContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* align-items: flex-end; */
+    gap: 30px;
+    padding: 150px 40px 0px 0px;
+}
+
+.headerQuote{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 50px;
+    letter-spacing: 5px;
+    word-spacing: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* padding: 50px; */
+    user-select: none;
+}
+
+.headerQuote1{
+    text-align: right;
+    color: rgb(246, 246, 245);
+    text-shadow: 0px 0px 10px black;
+}
+
+.highightQuote{
+    color: rgb(131, 172, 73);
+    text-shadow: 0px 0px 10px black;
+}
+
+.headerQuote2{
+    text-align: right;
+    color: rgb(239, 104, 55);
+    text-shadow: 0px 0px 10px black;
+}
+
+.browseRecipes{
+    text-align: right;
+}
+
+.browseRecipesBtn{
+    padding: 20px;
+    /* width: 130px; */
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    border: 2px solid white;
+    border-radius: 5px;
+    text-transform: uppercase;
+    background-color: transparent;
+    letter-spacing: 5px;
+}
+
+.browseRecipesBtn:hover{
+    /* background-color: rgb(245, 110, 7); */
+    background-color: #1b2225;
+    /* border: none; */
+}
+
+.scrollDown{
+    position: absolute;
+    bottom: 20px;
+    left: 47%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+}
+
+.scrollDownHeading{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    letter-spacing: 5px;
+    font-size: 15px;
+}
+
+
+.downArrow span{
+    color: white;
+    font-size: 50px;
+}
+
+
+@media (max-width: 1200px) {
+    .searchBar{
+      width: 80%;
+    }
+    .scrollDown {
+      left: 45%;
+    }
+}
+
+@media (max-width: 1000px) {
+  
+    .scrollDown {
+      left: 43%;
+    }
+}
+
+@media (max-width: 650px) {
+    .scrollDown {
+      left: 38%;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .scrollDown{
+        left: 33%;
+    }
+}
