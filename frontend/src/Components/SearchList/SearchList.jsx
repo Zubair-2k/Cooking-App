@@ -3,7 +3,6 @@ import { Link, useNavigate, useSearchParams} from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import Data from "../../Data/cuisine_with_id.json"
 import TrData from "../../Data/trending_cuisine.json"
 import QkData from "../../Data/quickMeal_cuisine.json"
 // import Img1 from "../../dishImg/TrendingImg/Ambur_Star_Chicken_Biryani_Recipe_.jpg"
@@ -76,7 +75,7 @@ const SearchList = ({recipeResult, recipeInput, loading, page, totalPages, setPa
                             
                                 <div className="recipeInterval">
                                     <div className="timeIcon">
-                                        <img src="/timer.png" alt="timerImg" className='timerImg'/>
+                                        <img src="/timer.webp" alt="timerImg" className='timerImg'/>
                                         {/* <i class="fa-solid fa-hourglass-end"></i> */}
                                     </div>
                                     <div className="recipeTime">{item.prep_time?.slice(9)}ins</div>
@@ -146,7 +145,7 @@ const SearchList = ({recipeResult, recipeInput, loading, page, totalPages, setPa
                             
                                 <div className="recipeInterval">
                                     <div className="timeIcon">
-                                        <img src="timer.png" alt="timerImg" className='timerImg'/>
+                                        <img src="/timer.webp" alt="timerImg" className='timerImg'/>
                                         {/* <i class="fa-solid fa-hourglass-end"></i> */}
                                     </div>
                                     <div className="recipeTime">{item.prep_time.slice(9)}ins</div>
@@ -192,7 +191,7 @@ const SearchList = ({recipeResult, recipeInput, loading, page, totalPages, setPa
                             
                                 <div className="recipeInterval">
                                     <div className="timeIcon">
-                                        <img src="timer.png" alt="timerImg" className='timerImg'/>
+                                        <img src="/timer.webp" alt="timerImg" className='timerImg'/>
                                         {/* <i class="fa-solid fa-hourglass-end"></i> */}
                                     </div>
                                     <div className="recipeTime">{item.prep_time.slice(9)}ins</div>

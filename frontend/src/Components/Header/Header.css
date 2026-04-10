@@ -4,7 +4,7 @@
 }
 
 .headerContainer{
-    background-image: url("/HeaderFoodImg.png");
+    background-image: url("/HeaderFoodImg.webp");
     position: relative;
     width: 100%;
     height: 100vh;
@@ -84,7 +84,7 @@
 .scrollDown{
     position: absolute;
     bottom: 20px;
-    left: 47%;
+    left: 50%;
     transform: translate(-50%,-50%);
     display: flex;
     flex-direction: column;
@@ -111,28 +111,5 @@
 @media (max-width: 1200px) {
     .searchBar{
       width: 80%;
-    }
-    .scrollDown {
-      left: 45%;
-    }
-}
-
-@media (max-width: 1000px) {
-  
-    .scrollDown {
-      left: 43%;
-    }
-}
-
-@media (max-width: 650px) {
-    .scrollDown {
-      left: 38%;
-    }
-
-}
-
-@media (max-width: 480px) {
-    .scrollDown{
-        left: 33%;
     }
 }

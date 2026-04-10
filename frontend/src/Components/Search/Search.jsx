@@ -6,11 +6,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SearchList from "../SearchList/SearchList";
 import "./Search.css"
 import { useSearchParams } from "react-router-dom";
-import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Search = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const [recipeInput, setRecipeInput] = useState("");
   const [recipeResult,setRecipeResult]= useState([]);
   const [loading, setLoading] =useState(false)
@@ -53,7 +54,7 @@ const Search = () => {
       setLoading(true)
 
       const timer = setTimeout(() => {
-        axios.get(`http://localhost:5000/api/recipes/search?`,
+        axios.get(`${API_URL}/api/recipes/search?`,
           {
             params: {
               name: recipeInput,

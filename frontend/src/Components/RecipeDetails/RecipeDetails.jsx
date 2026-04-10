@@ -10,12 +10,13 @@ import ScrollToTop from "../ScrollingPosition/ScrollToTop";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { useLayoutEffect } from "react";
 import useAnimationPreference from "../../hooks/useAnimationPreference";
 import { useGSAP } from "@gsap/react";
 
 
 const RecipeDetails = () => {
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const { id } = useParams()
   const navigate = useNavigate()
 
@@ -139,7 +140,7 @@ const RecipeDetails = () => {
   console.log(id)
 
   useEffect(()=>{
-    axios.get(`http://localhost:5000/api/recipes/recipe/${id}`).then(res=> setRecipeData(res.data))
+    axios.get(`${API_URL}/api/recipes/recipe/${id}`).then(res=> setRecipeData(res.data))
   },[id])
 
   return (
@@ -154,7 +155,7 @@ const RecipeDetails = () => {
                 <div className="logo">
 
                     <div className="logoIcon">
-                        <img src="/Logo.png" alt="LogoImg" className='logoImg'/>
+                        <img src="/Logo.webp" alt="LogoImg" className='logoImg'/>
                     </div>
 
                     <div className="logoName">
@@ -182,32 +183,28 @@ const RecipeDetails = () => {
                     <span className="label">{animationEnabled ? "ON" : "OFF"}</span>
                 </button>
 
-                {/* <button 
-                className="animationToggle"
-                onClick={()=>setAnimationEnabled(!animationEnabled)}
-                >
-                    {animationEnabled ? "Disable Animation" : "Enable Animation"}
-                </button> */}
-
             </div>
 
         </div>
 
         <div className="recipeDetailsContainer">
-            <div className="backBtn" 
-            onClick={()=>{
-                if (window.history.length>1){
-                    navigate(-1)
-                    window.scrollTo(0,0)
-                }
-                else{
-                    navigate("/")
-                    window.scrollTo(0,0)
-                }
-            }}>
-                <i className="fa-solid fa-arrow-left"></i>
-            </div>
+        <div className="backBtn" 
+        onClick={()=>{
+            if (window.history.length>1){
+                navigate(-1)
+                window.scrollTo(0,0)
+            }
+            else{
+                navigate("/")
+                window.scrollTo(0,0)
+            }
+        }}>
+            <i className="fa-solid fa-arrow-left"></i>
+        </div>
 
+        {!recipeData && <h3 className="recipeLoadingText">Recipe Loading ...</h3>}
+
+        {recipeData &&
             <div className="recipeDetailContainer">
                 <div className="recipeHeader">
                     <div className="recipeHeaderImg">
@@ -218,7 +215,7 @@ const RecipeDetails = () => {
 
                         <div className="highlightWrapper">
 
-                            <img src="/brushBgImg.png" alt="Brush Img" className="brushImg" />
+                            <img src="/brushBgImg.webp" alt="Brush Img" className="brushImg" />
 
                             <div className="recipeHeadingText">{recipeData?.name}</div> 
                         
@@ -302,7 +299,7 @@ const RecipeDetails = () => {
                             <div className="recipeIngredientHeader">
                                     <div className="recipeIngredientHeading">
                                         <div className="recipeIngredientHeadingIcon">
-                                            <img src="/ingredientsIcon.png" alt="Ingredients Icon" className="ingredientsIcon"/>    
+                                            <img src="/ingredientsIcon.webp" alt="Ingredients Icon" className="ingredientsIcon"/>    
                                         </div>                    
                                         <div className="recipecIngredientHeadingText">
                                             Ingredients
@@ -333,7 +330,7 @@ const RecipeDetails = () => {
                             <div className="recipeInstructionsHeader">
                                 <div className="recipeInstructionsHeading">
                                     <div className="recipeInstructionsIcon">
-                                        <img src="/instructionIcon.png" alt="Instructions Icon" className="instructionsIcon"/>
+                                        <img src="/instructionIcon.webp" alt="Instructions Icon" className="instructionsIcon"/>
                                     </div>
 
                                     <div className="recipecInstructionsHeadingText">
@@ -371,6 +368,8 @@ const RecipeDetails = () => {
 
                 </div>
             </div>
+        }
+
         </div>
         
     </>
