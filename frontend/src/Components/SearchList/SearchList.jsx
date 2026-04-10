@@ -75,7 +75,7 @@ const SearchList = ({recipeResult, recipeInput, loading, page, totalPages, setPa
                             
                                 <div className="recipeInterval">
                                     <div className="timeIcon">
-                                        <img src="/timer.webp" alt="timerImg" className='timerImg'/>
+                                        <img src={`${import.meta.env.BASE_URL}timer.webp`} alt="timerImg" className='timerImg'/>
                                         {/* <i class="fa-solid fa-hourglass-end"></i> */}
                                     </div>
                                     <div className="recipeTime">{item.prep_time?.slice(9)}ins</div>
@@ -145,7 +145,7 @@ const SearchList = ({recipeResult, recipeInput, loading, page, totalPages, setPa
                             
                                 <div className="recipeInterval">
                                     <div className="timeIcon">
-                                        <img src="/timer.webp" alt="timerImg" className='timerImg'/>
+                                        <img src={`${import.meta.env.BASE_URL}timer.webp`} alt="timerImg" className='timerImg'/>
                                         {/* <i class="fa-solid fa-hourglass-end"></i> */}
                                     </div>
                                     <div className="recipeTime">{item.prep_time.slice(9)}ins</div>
@@ -191,7 +191,7 @@ const SearchList = ({recipeResult, recipeInput, loading, page, totalPages, setPa
                             
                                 <div className="recipeInterval">
                                     <div className="timeIcon">
-                                        <img src="/timer.webp" alt="timerImg" className='timerImg'/>
+                                        <img src={`${import.meta.env.BASE_URL}timer.webp`} alt="timerImg" className='timerImg'/>
                                         {/* <i class="fa-solid fa-hourglass-end"></i> */}
                                     </div>
                                     <div className="recipeTime">{item.prep_time.slice(9)}ins</div>

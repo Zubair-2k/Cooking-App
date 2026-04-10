@@ -155,7 +155,7 @@ const RecipeDetails = () => {
                 <div className="logo">
 
                     <div className="logoIcon">
-                        <img src="/Logo.webp" alt="LogoImg" className='logoImg'/>
+                        <img src={`${import.meta.env.BASE_URL}Logo.webp`} alt="LogoImg" className='logoImg'/>
                     </div>
 
                     <div className="logoName">
@@ -215,7 +215,7 @@ const RecipeDetails = () => {
 
                         <div className="highlightWrapper">
 
-                            <img src="/brushBgImg.webp" alt="Brush Img" className="brushImg" />
+                            <img src={`${import.meta.env.BASE_URL}brushBgImg.webp`} alt="Brush Img" className="brushImg" />
 
                             <div className="recipeHeadingText">{recipeData?.name}</div> 
                         
@@ -226,7 +226,7 @@ const RecipeDetails = () => {
                                 return(
                                 <div className="recipeDesc" key={index}>
                                     <div className="recipeDescIcon">
-                                        <img src="/DescIcon2.png" alt="Description Icon" className="DescIcon"/>
+                                        <img src={`${import.meta.env.BASE_URL}DescIcon2.png`} alt="Description Icon" className="DescIcon"/>
                                     </div>
                                     <div className="recipeDescText">
                                         {data}                                    
@@ -299,7 +299,7 @@ const RecipeDetails = () => {
                             <div className="recipeIngredientHeader">
                                     <div className="recipeIngredientHeading">
                                         <div className="recipeIngredientHeadingIcon">
-                                            <img src="/ingredientsIcon.webp" alt="Ingredients Icon" className="ingredientsIcon"/>    
+                                            <img src={`${import.meta.env.BASE_URL}ingredientsIcon.webp`} alt="Ingredients Icon" className="ingredientsIcon"/>    
                                         </div>                    
                                         <div className="recipecIngredientHeadingText">
                                             Ingredients
@@ -315,7 +315,7 @@ const RecipeDetails = () => {
                                     return (
                                     <div className="recipeIngredient" key={index}>
                                         <div className="recipeIngredientIcon">
-                                            <img src="/IngredientsListIcon.png" alt="Ingredients List Icon" className="ingredientsListIcon"/>
+                                            <img src={`${import.meta.env.BASE_URL}IngredientsListIcon.png`} alt="Ingredients List Icon" className="ingredientsListIcon"/>
                                         </div>
                                         <div className="recipeIngredientValue">{data}</div>
                                     </div>
@@ -330,7 +330,7 @@ const RecipeDetails = () => {
                             <div className="recipeInstructionsHeader">
                                 <div className="recipeInstructionsHeading">
                                     <div className="recipeInstructionsIcon">
-                                        <img src="/instructionIcon.webp" alt="Instructions Icon" className="instructionsIcon"/>
+                                        <img src={`${import.meta.env.BASE_URL}instructionIcon.webp`} alt="Instructions Icon" className="instructionsIcon"/>
                                     </div>
 
                                     <div className="recipecInstructionsHeadingText">

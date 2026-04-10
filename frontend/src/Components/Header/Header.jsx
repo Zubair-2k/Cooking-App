@@ -103,7 +103,7 @@ const Header = () => {
               <p className="scrollDownHeading">Scroll Down</p>
 
               <div className="downArrow">
-                <img src="/scrollDownIcon.png" alt="Scroll Down Icon" />
+                <img src={`${import.meta.env.BASE_URL}scrollDownIcon.png`} alt="Scroll Down Icon" />
               </div>
             </div>
 

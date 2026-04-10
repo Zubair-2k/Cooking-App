@@ -20,7 +20,7 @@ const Navbar = () => {
         <div className="logo">
 
           <div className="logoIcon">
-            <img src="/Logo.webp" alt="LogoImg" className='logoImg'/>
+            <img src={`${import.meta.env.BASE_URL}Logo.webp`} alt="LogoImg" className='logoImg'/>
           </div>
 
           <div className="logoName">
